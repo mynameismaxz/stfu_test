@@ -1,0 +1,22 @@
+# check Readme.md file on the repository for have data or not ?
+name: README.md validation
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+
+jobs:
+    validate-readme:
+        runs-on: ubuntu-latest
+    
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v2
+    
+          - name: Install markdownlint
+            run: npm install -g markdownlint-cli
+    
+          - name: Validate README.md
+            run: markdownlint README.md
